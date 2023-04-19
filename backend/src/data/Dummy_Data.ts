@@ -1,17 +1,6 @@
-interface IPlace {
-    id: string,
-    title: string,
-    description: string,
-    imageUrl: string,
-    address: string,
-    location: {
-        lat: number,
-        lng: number
-    },
-    creator: string
-}
+import { IPlace } from "../types/places.type";
 
-export const DUMMY_PLACES: ReadonlyArray<IPlace> = [
+export const DUMMY_PLACES: IPlace[] = [
     {
         id: "p1",
         title: "Empire State Building",
