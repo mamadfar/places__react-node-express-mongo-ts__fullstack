@@ -34,4 +34,24 @@ export const createPlace = (req: Request<{}, {}, Omit<IPlace, "id" | "imageUrl">
     DUMMY_PLACES.unshift(newPlace);
 
     res.status(201).json({place: newPlace})
-}
+};
+
+//* Update a place
+export const updatePlace = (req: Request<{pid: string}, {}, Omit<IPlace, "id" | "imageUrl" | "address" | "location" | "creator">>, res: Response, next: NextFunction) => {
+    const placeId = req.params.pid;
+    const {title, description} = req.body;
+
+    const updatedPlace = {...DUMMY_PLACES.find(place => place.id === placeId)} as IPlace;
+    const updatedPlaceIndex = DUMMY_PLACES.findIndex(place => place.id === placeId);
+        updatedPlace.title = title;
+        updatedPlace.description = description;
+        DUMMY_PLACES[updatedPlaceIndex] = updatedPlace;
+    
+        res.status(200).json({place: updatedPlace});
+};
+
+//* Delete a place
+export const deletePlace = (req: Request<{pid: string}>, res: Response, next: NextFunction) => {
+    const placeId = req.params.pid;
+
+};
