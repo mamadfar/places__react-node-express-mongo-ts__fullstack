@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import {v4 as uuid} from "uuid";
 
-import { DUMMY_PLACES } from "../data/Dummy_Data";
+import { DUMMY_PLACES, setDummyPlaces } from "../data/Dummy_Data";
 import HttpError from "../models/http-error";
 import { IPlace } from "../types/places.type";
 import Place from "../models/Place";
@@ -53,5 +53,7 @@ export const updatePlace = (req: Request<{pid: string}, {}, Omit<IPlace, "id" | 
 //* Delete a place
 export const deletePlace = (req: Request<{pid: string}>, res: Response, next: NextFunction) => {
     const placeId = req.params.pid;
+    setDummyPlaces(DUMMY_PLACES.filter(place => place.id !== placeId));
 
+    res.status(200).json({message: "Place has been deleted."})
 };

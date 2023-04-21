@@ -1,6 +1,6 @@
 import { IPlace } from "../types/places.type";
 
-export const DUMMY_PLACES: IPlace[] = [
+export let DUMMY_PLACES: IPlace[] = [
     {
         id: "p1",
         title: "Empire State Building",
@@ -26,3 +26,7 @@ export const DUMMY_PLACES: IPlace[] = [
         creator: "u2"
     },
 ];
+
+export const setDummyPlaces = (newDummyPlaces: IPlace[]) => {
+    DUMMY_PLACES = newDummyPlaces;
+}
